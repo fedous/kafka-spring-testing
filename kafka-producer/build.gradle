@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.1'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group 'org.fedous'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://packages.confluent.io/maven/' }
+}
+
+tasks.register("prepareKotlinBuildScriptModel"){}
+
+dependencies {
+
+    // module kafka-commons
+    implementation project(':kafka-commons')
+
+    // Kafka
+    implementation 'org.springframework.kafka:spring-kafka:3.1.1'
+
+    // Json SerDes
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.1'
+
+    // Avro
+    //implementation 'org.apache.avro:avro:1.11.0'
+    //implementation 'org.apache.avro:avro-tools:1.11.0'
+    //implementation 'io.confluent:kafka-avro-serializer:7.5.1'
+
+    // Lombok
+    implementation 'org.springframework.boot:spring-boot-starter'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Test dependencies
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+}
+
+test {
+    useJUnitPlatform()
+}
