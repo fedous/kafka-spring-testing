@@ -16,7 +16,7 @@ public class KafkaOrderSender {
     public void send(NewOrder order) {
 
         String kafkaTopic = "testing-order";
-        kafkaTemplate.send(kafkaTopic, order);
+        kafkaTemplate.send(kafkaTopic, order.getCustomerName(), order);
         log.info("Sent: {}", order);
     }
 }
