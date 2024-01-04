@@ -98,7 +98,7 @@ services:
     depends_on:
       - kafka-1
     environment:
-      CONNECT_BOOTSTRAP_SERVERS: kafka-1:9092
+      CONNECT_BOOTSTRAP_SERVERS: kafka-1:9092,kafka-2:9093,kafka-3:9094
       CONNECT_REST_PORT: 8083
       CONNECT_GROUP_ID: "connect"
       CONNECT_CONFIG_STORAGE_TOPIC: "connect-config"
@@ -131,7 +131,7 @@ services:
     depends_on:
       - zookeeper
     environment:
-      CONTROL_CENTER_BOOTSTRAP_SERVERS: kafka-1:9092
+      CONTROL_CENTER_BOOTSTRAP_SERVERS: kafka-1:9092,kafka-2:9093,kafka-3:9094
       CONTROL_CENTER_ZOOKEEPER_CONNECT: zookeeper:2181
       CONTROL_CENTER_REPLICATION_FACTOR: 1
       CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_REPLICATION: 1
