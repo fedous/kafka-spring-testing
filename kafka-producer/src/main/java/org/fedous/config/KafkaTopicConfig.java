@@ -24,7 +24,12 @@ public class KafkaTopicConfig {
     }
 
     @Bean
-    public NewTopic topic1() {
+    public NewTopic topicOrder() {
         return new NewTopic("testing-order", 3, (short) 3);
+    }
+
+    @Bean
+    public NewTopic topicAvroOrder() {
+        return new NewTopic("testing-order-avro", 3, (short) 3);
     }
 }

@@ -1,8 +1,11 @@
 package org.fedous.config;
 
+import io.confluent.kafka.serializers.KafkaAvroDeserializer;
+import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.fedous.commons.NewOrder;
+import org.fedous.generated.AvroOrder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +26,8 @@ public class KafkaConsumerConfig {
 
     @Value(value = "${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
+    @Value(value = "${spring.kafka.schema-registry-url}")
+    private String schemaRegistryUrl;
 
     @Bean
     public ConsumerFactory<String, NewOrder> consumerFactory() {
@@ -41,6 +46,18 @@ public class KafkaConsumerConfig {
                 new StringDeserializer(),
                 jsonDeserializer);
     }
+    @Bean
+    public ConsumerFactory<String, AvroOrder> consumerFactoryAvro() {
+        Map<String, Object> props = new HashMap<>();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "consumer-test");
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class);
+        props.put(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl);
+        props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
+
+        return new DefaultKafkaConsumerFactory<>(props);
+    }
 
     @Bean
     public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, NewOrder>>
@@ -49,6 +66,15 @@ public class KafkaConsumerConfig {
         ConcurrentKafkaListenerContainerFactory<String, NewOrder> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
+        return factory;
+    }
+    @Bean
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, AvroOrder>>
+    kafkaListenerContainerFactoryAvro() {
+
+        ConcurrentKafkaListenerContainerFactory<String, AvroOrder> factory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactoryAvro());
         return factory;
     }
 }

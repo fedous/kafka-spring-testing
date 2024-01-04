@@ -3,3 +3,5 @@ rootProject.name = 'kafka-spring-testing'
 include 'kafka-commons'
 include 'kafka-consumer'
 include 'kafka-producer'
+include 'kafka-avro-producer-rest'
+

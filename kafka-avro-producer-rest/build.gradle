@@ -13,15 +13,15 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.4'
 }
 
-tasks.register("prepareKotlinBuildScriptModel"){}
-
 group 'org.fedous'
 version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    //maven { url 'https://packages.confluent.io/maven/' }
+    maven { url 'https://packages.confluent.io/maven/' }
 }
+
+tasks.register("prepareKotlinBuildScriptModel"){}
 
 def avroSchemasDir = "src/main/resources/avscschemas"
 def avroCodeGenerationDir = "src/main/java"
@@ -50,12 +50,31 @@ tasks.withType(JavaCompile).configureEach {
     dependsOn('avroCodeGeneration')
 }
 
+
 dependencies {
+
+    // Kafka
+    implementation 'org.springframework.kafka:spring-kafka:3.1.1'
+    implementation 'io.confluent:kafka-avro-serializer:7.5.1'
+    implementation 'io.confluent:kafka-schema-registry-client:5.4.3'
+
+    // Avro
+    implementation 'org.apache.avro:avro:1.11.2'
+
+    // Spring Web
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.3.2.RELEASE'
+
     // Lombok
     implementation 'org.springframework.boot:spring-boot-starter'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    // Avro
-    implementation 'org.apache.avro:avro:1.11.2'
+    // test
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
+
+test {
+    useJUnitPlatform()
+}
+

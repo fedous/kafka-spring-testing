@@ -1,0 +1,68 @@
+{
+  "name": "OrderValue",
+  "namespace": "org.fedous.generated",
+  "doc": "Order Value",
+  "type": "record",
+  "fields": [
+    {
+      "name": "orderID",
+      "type": {
+        "type": "string",
+        "doc": "Unique order id for each order"
+      }
+    },
+    {
+      "name": "orderType",
+      "type": {
+        "type": "enum",
+        "symbols": ["STANDARD_ORDER","LONG_LEAD_TIME_ORDER", "PRE_ORDER","BACK_ORDER"],
+        "default": "STANDARD_ORDER",
+        "name": "OrderType"
+      }
+    },
+    {
+      "name": "orderDate",
+      "type": {
+        "type": "string",
+        "doc": "items ordered date"
+      }
+    },
+    {
+      "name": "orderStatus",
+      "type": {
+        "type": "enum",
+        "symbols": ["PENDING","UNSHIPPED", "PARTIALLY_SHIPPED","SHIPPED","CANCELLED","PENDING_AVAILABILITY"],
+        "default": "PENDING",
+        "name": "OrderStatus"
+      }
+    },
+    {
+      "name": "isOrderPaid",
+      "type": {
+        "type": "boolean",
+        "doc": "paid is true and unpaid is false"
+      }
+    },
+    {
+      "name": "totalCost",
+      "type": {
+        "type": "double",
+        "doc": "Total cost of the items"
+      }
+    },
+    {
+      "name":"orderItems",
+      "type":{
+        "type": "array",
+        "items":{
+          "name":"OrderItem",
+          "type":"record",
+          "fields":[
+            {"name":"itemName", "type":"string"},
+            {"name":"itemPrice", "type":"double"}
+          ]
+        }
+      }
+    }
+  ]
+}

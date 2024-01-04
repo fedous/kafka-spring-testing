@@ -1,6 +1,6 @@
 package org.fedous;
 
-import org.fedous.commons.NewOrder;
+import org.fedous.generated.AvroOrder;
 import org.fedous.service.KafkaOrderSender;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -27,7 +27,7 @@ public class KafkaProducerApplication {
             while(true) {
                 i++;
 
-                NewOrder order = new NewOrder();
+                AvroOrder order = new AvroOrder();
                 order.setCustomerName("Pippo Nr " + i);
                 List<Long> productIds = new ArrayList<>();
                 productIds.add(System.currentTimeMillis());
@@ -35,20 +35,10 @@ public class KafkaProducerApplication {
                 productIds.add(9L*i);
                 order.setProductIds(productIds);
 
-                sender.send(order);
+                sender.sendAvro(order);
 
                 sleep(Duration.ofSeconds(5).toMillis());
             }
-            /*
-            int i = 0;
-            while (true) {
-                i++;
-                sender.send("Message nbr " + i);
-                sleep(5000);
-
-            }
-            */
-
         };
     }
 }
