@@ -7,15 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Random;
+import java.util.stream.IntStream;
+
 @Service
 @Slf4j
 public class KafkaOrderSender {
 
     @Autowired
     KafkaTemplate<String, NewOrder> kafkaTemplate;
-
     @Autowired
-    KafkaTemplate<String, AvroOrder> kafkaTemplateAvro;
+    KafkaTemplate<Integer, AvroOrder> kafkaTemplateAvro;
 
     public void send(NewOrder order) {
 
@@ -24,10 +26,14 @@ public class KafkaOrderSender {
         log.info("Sent: {}", order);
     }
 
-    public void sendAvro(AvroOrder order) {
+    public void sendAvro(int key, AvroOrder order) {
 
-        String kafkaTopic = "testing-order-avro";
-        kafkaTemplateAvro.send(kafkaTopic, order.getCustomerName(), order);
-        log.info("Sent: {}", order);
+        try {
+            String kafkaTopic = "testing-order-avro";
+            kafkaTemplateAvro.send(kafkaTopic, key, order);
+            log.info("Sent: key: {}, value: {}", key, order);
+        } catch (Exception e) {
+            log.error("Message not generated caused by: {}", e.getMessage());
+        }
     }
 }

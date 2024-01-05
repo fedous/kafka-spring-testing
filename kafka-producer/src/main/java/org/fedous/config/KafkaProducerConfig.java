@@ -3,6 +3,7 @@ package org.fedous.config;
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.fedous.commons.NewOrder;
 import org.fedous.generated.AvroOrder;
@@ -35,10 +36,10 @@ public class KafkaProducerConfig {
         return new DefaultKafkaProducerFactory<>(configProps);
     }
     @Bean
-    public ProducerFactory<String, AvroOrder> producerFactoryAvro() {
+    public ProducerFactory<Integer, AvroOrder> producerFactoryAvro() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
-        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, IntegerSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
         configProps.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl);
 
@@ -50,7 +51,7 @@ public class KafkaProducerConfig {
         return new KafkaTemplate<>(producerFactory());
     }
     @Bean
-    public KafkaTemplate<String, AvroOrder> kafkaTemplateAvro() {
+    public KafkaTemplate<Integer, AvroOrder> kafkaTemplateAvro() {
         return new KafkaTemplate<>(producerFactoryAvro());
     }
 }
