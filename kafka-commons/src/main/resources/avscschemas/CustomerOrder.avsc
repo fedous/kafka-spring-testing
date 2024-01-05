@@ -1,0 +1,34 @@
+{
+  "name": "CustomerOrder",
+  "namespace": "org.fedous.generated",
+  "type": "record",
+  "fields": [
+    {
+      "name": "orderId",
+      "type": "int"
+    },
+    {
+      "name": "customerId",
+      "type": "string"
+    },
+    {
+      "name": "customerName",
+      "type": "string"
+    },
+    {
+      "name": "customerSurname",
+      "type": "string"
+    },
+    {
+      "name": "customerAge",
+      "type": "int"
+    },
+    {
+      "name": "productIds",
+      "type": {
+        "type": "array",
+        "items": "long"
+      }
+    }
+  ]
+}
