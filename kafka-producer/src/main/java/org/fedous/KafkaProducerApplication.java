@@ -62,10 +62,10 @@ public class KafkaProducerApplication {
             while(true) {
                 try {
                     IntStream intStream = random.ints();
-                    int key = intStream.filter(i -> i >= 0).limit(1).findAny().orElseThrow();
+                    int key = intStream.filter(i -> i >= 0).limit(1).findAny().orElseThrow(); // random value
                     AvroOrder order = new AvroOrder();
-                    order.setCustomerId("-1");
-                    order.setCustomerName("Pippo Nr " + key);
+                    order.setOrderId(key);
+                    order.setCustomerId(String.valueOf((key % 10)+1)); // random value from 1 to 10
                     List<Long> productIds = new ArrayList<>();
                     productIds.add(System.currentTimeMillis());
                     productIds.add(7L * key % 10);

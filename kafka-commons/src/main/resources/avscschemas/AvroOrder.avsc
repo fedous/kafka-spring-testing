@@ -4,13 +4,13 @@
   "type": "record",
   "fields": [
     {
+      "name": "orderId",
+      "type": "int"
+    },
+    {
       "name": "customerId",
       "type": "string",
       "default": "-1"
-    },
-    {
-      "name": "customerName",
-      "type": "string"
     },
     {
       "name": "productIds",

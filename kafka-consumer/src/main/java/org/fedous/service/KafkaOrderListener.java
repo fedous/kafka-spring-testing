@@ -12,7 +12,11 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class KafkaOrderListener {
 
-    @KafkaListener(topics = "${spring.kafka.topics.avro-order}", containerFactory = "kafkaListenerContainerFactoryAvro")
+    //@Autowired
+    //KafkaOrderException kafkaOrderException;
+
+    @KafkaListener(topics = "${spring.kafka.topics.avro-order}", containerFactory = "kafkaListenerContainerFactoryAvro",
+                    errorHandler = "kafkaOrderException")
     public void listenAvro(@Header(name = KafkaHeaders.RECEIVED_PARTITION) int partition,
                            @Header(name = KafkaHeaders.OFFSET) int offset,
                            @Payload AvroOrder order) {
