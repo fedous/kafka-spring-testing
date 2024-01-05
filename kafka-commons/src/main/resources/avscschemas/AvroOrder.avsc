@@ -4,6 +4,11 @@
   "type": "record",
   "fields": [
     {
+      "name": "customerId",
+      "type": "string",
+      "default": "-1"
+    },
+    {
       "name": "customerName",
       "type": "string"
     },

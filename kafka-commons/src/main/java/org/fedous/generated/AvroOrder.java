@@ -12,10 +12,10 @@ import org.apache.avro.specific.SpecificData;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -7466919037569455303L;
+  private static final long serialVersionUID = 1932114598826767364L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroOrder\",\"namespace\":\"org.fedous.generated\",\"fields\":[{\"name\":\"customerName\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"productIds\",\"type\":{\"type\":\"array\",\"items\":\"long\"}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroOrder\",\"namespace\":\"org.fedous.generated\",\"fields\":[{\"name\":\"customerId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"-1\"},{\"name\":\"customerName\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"productIds\",\"type\":{\"type\":\"array\",\"items\":\"long\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -71,6 +71,7 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
     return DECODER.decode(b);
   }
 
+  private java.lang.String customerId;
   private java.lang.String customerName;
   private java.util.List<java.lang.Long> productIds;
 
@@ -83,10 +84,12 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
 
   /**
    * All-args constructor.
+   * @param customerId The new value for customerId
    * @param customerName The new value for customerName
    * @param productIds The new value for productIds
    */
-  public AvroOrder(java.lang.String customerName, java.util.List<java.lang.Long> productIds) {
+  public AvroOrder(java.lang.String customerId, java.lang.String customerName, java.util.List<java.lang.Long> productIds) {
+    this.customerId = customerId;
     this.customerName = customerName;
     this.productIds = productIds;
   }
@@ -101,8 +104,9 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
   @Override
   public java.lang.Object get(int field$) {
     switch (field$) {
-    case 0: return customerName;
-    case 1: return productIds;
+    case 0: return customerId;
+    case 1: return customerName;
+    case 2: return productIds;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -112,10 +116,28 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: customerName = value$ != null ? value$.toString() : null; break;
-    case 1: productIds = (java.util.List<java.lang.Long>)value$; break;
+    case 0: customerId = value$ != null ? value$.toString() : null; break;
+    case 1: customerName = value$ != null ? value$.toString() : null; break;
+    case 2: productIds = (java.util.List<java.lang.Long>)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
+  }
+
+  /**
+   * Gets the value of the 'customerId' field.
+   * @return The value of the 'customerId' field.
+   */
+  public java.lang.String getCustomerId() {
+    return customerId;
+  }
+
+
+  /**
+   * Sets the value of the 'customerId' field.
+   * @param value the value to set.
+   */
+  public void setCustomerId(java.lang.String value) {
+    this.customerId = value;
   }
 
   /**
@@ -193,6 +215,7 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroOrder>
     implements org.apache.avro.data.RecordBuilder<AvroOrder> {
 
+    private java.lang.String customerId;
     private java.lang.String customerName;
     private java.util.List<java.lang.Long> productIds;
 
@@ -207,13 +230,17 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
      */
     private Builder(org.fedous.generated.AvroOrder.Builder other) {
       super(other);
-      if (isValidValue(fields()[0], other.customerName)) {
-        this.customerName = data().deepCopy(fields()[0].schema(), other.customerName);
+      if (isValidValue(fields()[0], other.customerId)) {
+        this.customerId = data().deepCopy(fields()[0].schema(), other.customerId);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
-      if (isValidValue(fields()[1], other.productIds)) {
-        this.productIds = data().deepCopy(fields()[1].schema(), other.productIds);
+      if (isValidValue(fields()[1], other.customerName)) {
+        this.customerName = data().deepCopy(fields()[1].schema(), other.customerName);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
+      }
+      if (isValidValue(fields()[2], other.productIds)) {
+        this.productIds = data().deepCopy(fields()[2].schema(), other.productIds);
+        fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
     }
 
@@ -223,14 +250,58 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
      */
     private Builder(org.fedous.generated.AvroOrder other) {
       super(SCHEMA$, MODEL$);
-      if (isValidValue(fields()[0], other.customerName)) {
-        this.customerName = data().deepCopy(fields()[0].schema(), other.customerName);
+      if (isValidValue(fields()[0], other.customerId)) {
+        this.customerId = data().deepCopy(fields()[0].schema(), other.customerId);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.productIds)) {
-        this.productIds = data().deepCopy(fields()[1].schema(), other.productIds);
+      if (isValidValue(fields()[1], other.customerName)) {
+        this.customerName = data().deepCopy(fields()[1].schema(), other.customerName);
         fieldSetFlags()[1] = true;
       }
+      if (isValidValue(fields()[2], other.productIds)) {
+        this.productIds = data().deepCopy(fields()[2].schema(), other.productIds);
+        fieldSetFlags()[2] = true;
+      }
+    }
+
+    /**
+      * Gets the value of the 'customerId' field.
+      * @return The value.
+      */
+    public java.lang.String getCustomerId() {
+      return customerId;
+    }
+
+
+    /**
+      * Sets the value of the 'customerId' field.
+      * @param value The value of 'customerId'.
+      * @return This builder.
+      */
+    public org.fedous.generated.AvroOrder.Builder setCustomerId(java.lang.String value) {
+      validate(fields()[0], value);
+      this.customerId = value;
+      fieldSetFlags()[0] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'customerId' field has been set.
+      * @return True if the 'customerId' field has been set, false otherwise.
+      */
+    public boolean hasCustomerId() {
+      return fieldSetFlags()[0];
+    }
+
+
+    /**
+      * Clears the value of the 'customerId' field.
+      * @return This builder.
+      */
+    public org.fedous.generated.AvroOrder.Builder clearCustomerId() {
+      customerId = null;
+      fieldSetFlags()[0] = false;
+      return this;
     }
 
     /**
@@ -248,9 +319,9 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return This builder.
       */
     public org.fedous.generated.AvroOrder.Builder setCustomerName(java.lang.String value) {
-      validate(fields()[0], value);
+      validate(fields()[1], value);
       this.customerName = value;
-      fieldSetFlags()[0] = true;
+      fieldSetFlags()[1] = true;
       return this;
     }
 
@@ -259,7 +330,7 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return True if the 'customerName' field has been set, false otherwise.
       */
     public boolean hasCustomerName() {
-      return fieldSetFlags()[0];
+      return fieldSetFlags()[1];
     }
 
 
@@ -269,7 +340,7 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
       */
     public org.fedous.generated.AvroOrder.Builder clearCustomerName() {
       customerName = null;
-      fieldSetFlags()[0] = false;
+      fieldSetFlags()[1] = false;
       return this;
     }
 
@@ -288,9 +359,9 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return This builder.
       */
     public org.fedous.generated.AvroOrder.Builder setProductIds(java.util.List<java.lang.Long> value) {
-      validate(fields()[1], value);
+      validate(fields()[2], value);
       this.productIds = value;
-      fieldSetFlags()[1] = true;
+      fieldSetFlags()[2] = true;
       return this;
     }
 
@@ -299,7 +370,7 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return True if the 'productIds' field has been set, false otherwise.
       */
     public boolean hasProductIds() {
-      return fieldSetFlags()[1];
+      return fieldSetFlags()[2];
     }
 
 
@@ -309,7 +380,7 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
       */
     public org.fedous.generated.AvroOrder.Builder clearProductIds() {
       productIds = null;
-      fieldSetFlags()[1] = false;
+      fieldSetFlags()[2] = false;
       return this;
     }
 
@@ -318,8 +389,9 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
     public AvroOrder build() {
       try {
         AvroOrder record = new AvroOrder();
-        record.customerName = fieldSetFlags()[0] ? this.customerName : (java.lang.String) defaultValue(fields()[0]);
-        record.productIds = fieldSetFlags()[1] ? this.productIds : (java.util.List<java.lang.Long>) defaultValue(fields()[1]);
+        record.customerId = fieldSetFlags()[0] ? this.customerId : (java.lang.String) defaultValue(fields()[0]);
+        record.customerName = fieldSetFlags()[1] ? this.customerName : (java.lang.String) defaultValue(fields()[1]);
+        record.productIds = fieldSetFlags()[2] ? this.productIds : (java.util.List<java.lang.Long>) defaultValue(fields()[2]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -352,6 +424,8 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
   @Override public void customEncode(org.apache.avro.io.Encoder out)
     throws java.io.IOException
   {
+    out.writeString(this.customerId);
+
     out.writeString(this.customerName);
 
     long size0 = this.productIds.size();
@@ -374,6 +448,8 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
+      this.customerId = in.readString();
+
       this.customerName = in.readString();
 
       long size0 = in.readArrayStart();
@@ -392,13 +468,17 @@ public class AvroOrder extends org.apache.avro.specific.SpecificRecordBase imple
       }
 
     } else {
-      for (int i = 0; i < 2; i++) {
+      for (int i = 0; i < 3; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.customerName = in.readString();
+          this.customerId = in.readString();
           break;
 
         case 1:
+          this.customerName = in.readString();
+          break;
+
+        case 2:
           long size0 = in.readArrayStart();
           java.util.List<java.lang.Long> a0 = this.productIds;
           if (a0 == null) {
