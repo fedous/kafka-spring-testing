@@ -5,3 +5,4 @@ spring:
     topics:
       avro-order: testing-avro-order
       person: testing-person
+      customer-order: testing-customer-order

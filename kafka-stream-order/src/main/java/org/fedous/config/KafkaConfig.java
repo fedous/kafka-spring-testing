@@ -1,16 +1,9 @@
 package org.fedous.config;
 
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
-import io.confluent.kafka.serializers.KafkaAvroDeserializer;
-import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.common.serialization.StringDeserializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.streams.StreamsConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -37,6 +30,8 @@ public class KafkaConfig {
     private String avroOrderTopic;
     @Value(value = "${spring.kafka.topics.person}")
     private String personTopic;
+    @Value(value = "${spring.kafka.topics.customer-order}")
+    private String customerOrder;
 
     @Bean(name = KafkaStreamsDefaultConfiguration.DEFAULT_STREAMS_CONFIG_BEAN_NAME)
     KafkaStreamsConfiguration kStreamsConfig() {
@@ -47,6 +42,7 @@ public class KafkaConfig {
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
         props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, schemaRegistryUrl);
         props.put(StreamsConfig.REPLICATION_FACTOR_CONFIG, 3);
+        props.put(StreamsConfig.NUM_STREAM_THREADS_CONFIG, 3);
         // configure the state location to allow tests to use clean state for every run
         //props.put(StreamsConfig.STATE_DIR_CONFIG, stateStoreLocation);
 
@@ -66,7 +62,6 @@ public class KafkaConfig {
     public NewTopic topicAvroOrder() {
         return new NewTopic(avroOrderTopic, 3, (short) 3);
     }
-
     @Bean
     public NewTopic topicPerson() {
         return TopicBuilder.name(personTopic)
@@ -74,5 +69,9 @@ public class KafkaConfig {
                 .replicas(3)
                 .compact()
                 .build();
+    }
+    @Bean
+    public NewTopic topicCustomerOrder() {
+        return new NewTopic(customerOrder, 3, (short) 3);
     }
 }
