@@ -5,4 +5,5 @@ spring:
     topics:
       avro-order: testing-avro-order
       person: testing-person
-      customer-order: testing-customer-order
+      order-enriched: testing-order-enriched
+      customer-summary: testing-customer-summary

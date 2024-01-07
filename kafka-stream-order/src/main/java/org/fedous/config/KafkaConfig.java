@@ -30,8 +30,10 @@ public class KafkaConfig {
     private String avroOrderTopic;
     @Value(value = "${spring.kafka.topics.person}")
     private String personTopic;
-    @Value(value = "${spring.kafka.topics.customer-order}")
-    private String customerOrder;
+    @Value(value = "${spring.kafka.topics.order-enriched}")
+    private String orderEnrichedTopic;
+    @Value(value = "${spring.kafka.topics.customer-summary}")
+    private String customerSummaryTopic;
 
     @Bean(name = KafkaStreamsDefaultConfiguration.DEFAULT_STREAMS_CONFIG_BEAN_NAME)
     KafkaStreamsConfiguration kStreamsConfig() {
@@ -71,7 +73,12 @@ public class KafkaConfig {
                 .build();
     }
     @Bean
-    public NewTopic topicCustomerOrder() {
-        return new NewTopic(customerOrder, 3, (short) 3);
+    public NewTopic topicOrderEnriched() {
+        return new NewTopic(orderEnrichedTopic, 3, (short) 3);
+    }
+
+    @Bean
+    public NewTopic topicCustomerSummary() {
+        return new NewTopic(customerSummaryTopic, 3, (short) 3);
     }
 }

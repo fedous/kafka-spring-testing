@@ -5,34 +5,32 @@
  */
 package org.fedous.generated;
 
-import org.apache.avro.generic.GenericArray;
-import org.apache.avro.specific.SpecificData;
-import org.apache.avro.util.Utf8;
-import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.SchemaStore;
+import org.apache.avro.specific.SpecificData;
 
 @org.apache.avro.specific.AvroGenerated
-public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 2701735537161158429L;
+public class OrderEnriched extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  private static final long serialVersionUID = -2598311037000682599L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"CustomerOrder\",\"namespace\":\"org.fedous.generated\",\"fields\":[{\"name\":\"orderId\",\"type\":\"int\"},{\"name\":\"customerId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"customerName\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"customerSurname\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"customerAge\",\"type\":\"int\"},{\"name\":\"productIds\",\"type\":{\"type\":\"array\",\"items\":\"long\"}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"OrderEnriched\",\"namespace\":\"org.fedous.generated\",\"fields\":[{\"name\":\"orderId\",\"type\":\"int\"},{\"name\":\"customerId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"customerName\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"customerSurname\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"customerAge\",\"type\":\"int\"},{\"name\":\"productIds\",\"type\":{\"type\":\"array\",\"items\":\"long\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
 
-  private static final BinaryMessageEncoder<CustomerOrder> ENCODER =
+  private static final BinaryMessageEncoder<OrderEnriched> ENCODER =
       new BinaryMessageEncoder<>(MODEL$, SCHEMA$);
 
-  private static final BinaryMessageDecoder<CustomerOrder> DECODER =
+  private static final BinaryMessageDecoder<OrderEnriched> DECODER =
       new BinaryMessageDecoder<>(MODEL$, SCHEMA$);
 
   /**
    * Return the BinaryMessageEncoder instance used by this class.
    * @return the message encoder used by this class
    */
-  public static BinaryMessageEncoder<CustomerOrder> getEncoder() {
+  public static BinaryMessageEncoder<OrderEnriched> getEncoder() {
     return ENCODER;
   }
 
@@ -40,7 +38,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
    * Return the BinaryMessageDecoder instance used by this class.
    * @return the message decoder used by this class
    */
-  public static BinaryMessageDecoder<CustomerOrder> getDecoder() {
+  public static BinaryMessageDecoder<OrderEnriched> getDecoder() {
     return DECODER;
   }
 
@@ -49,12 +47,12 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
    * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
-  public static BinaryMessageDecoder<CustomerOrder> createDecoder(SchemaStore resolver) {
+  public static BinaryMessageDecoder<OrderEnriched> createDecoder(SchemaStore resolver) {
     return new BinaryMessageDecoder<>(MODEL$, SCHEMA$, resolver);
   }
 
   /**
-   * Serializes this CustomerOrder to a ByteBuffer.
+   * Serializes this OrderEnriched to a ByteBuffer.
    * @return a buffer holding the serialized data for this instance
    * @throws java.io.IOException if this instance could not be serialized
    */
@@ -63,12 +61,12 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
   }
 
   /**
-   * Deserializes a CustomerOrder from a ByteBuffer.
+   * Deserializes a OrderEnriched from a ByteBuffer.
    * @param b a byte buffer holding serialized data for an instance of this class
-   * @return a CustomerOrder instance decoded from the given buffer
+   * @return a OrderEnriched instance decoded from the given buffer
    * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
    */
-  public static CustomerOrder fromByteBuffer(
+  public static OrderEnriched fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
@@ -85,7 +83,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
    */
-  public CustomerOrder() {}
+  public OrderEnriched() {}
 
   /**
    * All-args constructor.
@@ -96,7 +94,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
    * @param customerAge The new value for customerAge
    * @param productIds The new value for productIds
    */
-  public CustomerOrder(java.lang.Integer orderId, java.lang.String customerId, java.lang.String customerName, java.lang.String customerSurname, java.lang.Integer customerAge, java.util.List<java.lang.Long> productIds) {
+  public OrderEnriched(java.lang.Integer orderId, java.lang.String customerId, java.lang.String customerName, java.lang.String customerSurname, java.lang.Integer customerAge, java.util.List<java.lang.Long> productIds) {
     this.orderId = orderId;
     this.customerId = customerId;
     this.customerName = customerName;
@@ -243,45 +241,45 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
   }
 
   /**
-   * Creates a new CustomerOrder RecordBuilder.
-   * @return A new CustomerOrder RecordBuilder
+   * Creates a new OrderEnriched RecordBuilder.
+   * @return A new OrderEnriched RecordBuilder
    */
-  public static org.fedous.generated.CustomerOrder.Builder newBuilder() {
-    return new org.fedous.generated.CustomerOrder.Builder();
+  public static org.fedous.generated.OrderEnriched.Builder newBuilder() {
+    return new org.fedous.generated.OrderEnriched.Builder();
   }
 
   /**
-   * Creates a new CustomerOrder RecordBuilder by copying an existing Builder.
+   * Creates a new OrderEnriched RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new CustomerOrder RecordBuilder
+   * @return A new OrderEnriched RecordBuilder
    */
-  public static org.fedous.generated.CustomerOrder.Builder newBuilder(org.fedous.generated.CustomerOrder.Builder other) {
+  public static org.fedous.generated.OrderEnriched.Builder newBuilder(org.fedous.generated.OrderEnriched.Builder other) {
     if (other == null) {
-      return new org.fedous.generated.CustomerOrder.Builder();
+      return new org.fedous.generated.OrderEnriched.Builder();
     } else {
-      return new org.fedous.generated.CustomerOrder.Builder(other);
+      return new org.fedous.generated.OrderEnriched.Builder(other);
     }
   }
 
   /**
-   * Creates a new CustomerOrder RecordBuilder by copying an existing CustomerOrder instance.
+   * Creates a new OrderEnriched RecordBuilder by copying an existing OrderEnriched instance.
    * @param other The existing instance to copy.
-   * @return A new CustomerOrder RecordBuilder
+   * @return A new OrderEnriched RecordBuilder
    */
-  public static org.fedous.generated.CustomerOrder.Builder newBuilder(org.fedous.generated.CustomerOrder other) {
+  public static org.fedous.generated.OrderEnriched.Builder newBuilder(org.fedous.generated.OrderEnriched other) {
     if (other == null) {
-      return new org.fedous.generated.CustomerOrder.Builder();
+      return new org.fedous.generated.OrderEnriched.Builder();
     } else {
-      return new org.fedous.generated.CustomerOrder.Builder(other);
+      return new org.fedous.generated.OrderEnriched.Builder(other);
     }
   }
 
   /**
-   * RecordBuilder for CustomerOrder instances.
+   * RecordBuilder for OrderEnriched instances.
    */
   @org.apache.avro.specific.AvroGenerated
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<CustomerOrder>
-    implements org.apache.avro.data.RecordBuilder<CustomerOrder> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<OrderEnriched>
+    implements org.apache.avro.data.RecordBuilder<OrderEnriched> {
 
     private int orderId;
     private java.lang.String customerId;
@@ -299,7 +297,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(org.fedous.generated.CustomerOrder.Builder other) {
+    private Builder(org.fedous.generated.OrderEnriched.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.orderId)) {
         this.orderId = data().deepCopy(fields()[0].schema(), other.orderId);
@@ -328,10 +326,10 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
     }
 
     /**
-     * Creates a Builder by copying an existing CustomerOrder instance
+     * Creates a Builder by copying an existing OrderEnriched instance
      * @param other The existing instance to copy.
      */
-    private Builder(org.fedous.generated.CustomerOrder other) {
+    private Builder(org.fedous.generated.OrderEnriched other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.orderId)) {
         this.orderId = data().deepCopy(fields()[0].schema(), other.orderId);
@@ -373,7 +371,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
       * @param value The value of 'orderId'.
       * @return This builder.
       */
-    public org.fedous.generated.CustomerOrder.Builder setOrderId(int value) {
+    public org.fedous.generated.OrderEnriched.Builder setOrderId(int value) {
       validate(fields()[0], value);
       this.orderId = value;
       fieldSetFlags()[0] = true;
@@ -393,7 +391,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
       * Clears the value of the 'orderId' field.
       * @return This builder.
       */
-    public org.fedous.generated.CustomerOrder.Builder clearOrderId() {
+    public org.fedous.generated.OrderEnriched.Builder clearOrderId() {
       fieldSetFlags()[0] = false;
       return this;
     }
@@ -412,7 +410,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
       * @param value The value of 'customerId'.
       * @return This builder.
       */
-    public org.fedous.generated.CustomerOrder.Builder setCustomerId(java.lang.String value) {
+    public org.fedous.generated.OrderEnriched.Builder setCustomerId(java.lang.String value) {
       validate(fields()[1], value);
       this.customerId = value;
       fieldSetFlags()[1] = true;
@@ -432,7 +430,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
       * Clears the value of the 'customerId' field.
       * @return This builder.
       */
-    public org.fedous.generated.CustomerOrder.Builder clearCustomerId() {
+    public org.fedous.generated.OrderEnriched.Builder clearCustomerId() {
       customerId = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -452,7 +450,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
       * @param value The value of 'customerName'.
       * @return This builder.
       */
-    public org.fedous.generated.CustomerOrder.Builder setCustomerName(java.lang.String value) {
+    public org.fedous.generated.OrderEnriched.Builder setCustomerName(java.lang.String value) {
       validate(fields()[2], value);
       this.customerName = value;
       fieldSetFlags()[2] = true;
@@ -472,7 +470,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
       * Clears the value of the 'customerName' field.
       * @return This builder.
       */
-    public org.fedous.generated.CustomerOrder.Builder clearCustomerName() {
+    public org.fedous.generated.OrderEnriched.Builder clearCustomerName() {
       customerName = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -492,7 +490,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
       * @param value The value of 'customerSurname'.
       * @return This builder.
       */
-    public org.fedous.generated.CustomerOrder.Builder setCustomerSurname(java.lang.String value) {
+    public org.fedous.generated.OrderEnriched.Builder setCustomerSurname(java.lang.String value) {
       validate(fields()[3], value);
       this.customerSurname = value;
       fieldSetFlags()[3] = true;
@@ -512,7 +510,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
       * Clears the value of the 'customerSurname' field.
       * @return This builder.
       */
-    public org.fedous.generated.CustomerOrder.Builder clearCustomerSurname() {
+    public org.fedous.generated.OrderEnriched.Builder clearCustomerSurname() {
       customerSurname = null;
       fieldSetFlags()[3] = false;
       return this;
@@ -532,7 +530,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
       * @param value The value of 'customerAge'.
       * @return This builder.
       */
-    public org.fedous.generated.CustomerOrder.Builder setCustomerAge(int value) {
+    public org.fedous.generated.OrderEnriched.Builder setCustomerAge(int value) {
       validate(fields()[4], value);
       this.customerAge = value;
       fieldSetFlags()[4] = true;
@@ -552,7 +550,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
       * Clears the value of the 'customerAge' field.
       * @return This builder.
       */
-    public org.fedous.generated.CustomerOrder.Builder clearCustomerAge() {
+    public org.fedous.generated.OrderEnriched.Builder clearCustomerAge() {
       fieldSetFlags()[4] = false;
       return this;
     }
@@ -571,7 +569,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
       * @param value The value of 'productIds'.
       * @return This builder.
       */
-    public org.fedous.generated.CustomerOrder.Builder setProductIds(java.util.List<java.lang.Long> value) {
+    public org.fedous.generated.OrderEnriched.Builder setProductIds(java.util.List<java.lang.Long> value) {
       validate(fields()[5], value);
       this.productIds = value;
       fieldSetFlags()[5] = true;
@@ -591,7 +589,7 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
       * Clears the value of the 'productIds' field.
       * @return This builder.
       */
-    public org.fedous.generated.CustomerOrder.Builder clearProductIds() {
+    public org.fedous.generated.OrderEnriched.Builder clearProductIds() {
       productIds = null;
       fieldSetFlags()[5] = false;
       return this;
@@ -599,9 +597,9 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
 
     @Override
     @SuppressWarnings("unchecked")
-    public CustomerOrder build() {
+    public OrderEnriched build() {
       try {
-        CustomerOrder record = new CustomerOrder();
+        OrderEnriched record = new OrderEnriched();
         record.orderId = fieldSetFlags()[0] ? this.orderId : (java.lang.Integer) defaultValue(fields()[0]);
         record.customerId = fieldSetFlags()[1] ? this.customerId : (java.lang.String) defaultValue(fields()[1]);
         record.customerName = fieldSetFlags()[2] ? this.customerName : (java.lang.String) defaultValue(fields()[2]);
@@ -618,8 +616,8 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<CustomerOrder>
-    WRITER$ = (org.apache.avro.io.DatumWriter<CustomerOrder>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter<OrderEnriched>
+    WRITER$ = (org.apache.avro.io.DatumWriter<OrderEnriched>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -627,8 +625,8 @@ public class CustomerOrder extends org.apache.avro.specific.SpecificRecordBase i
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<CustomerOrder>
-    READER$ = (org.apache.avro.io.DatumReader<CustomerOrder>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader<OrderEnriched>
+    READER$ = (org.apache.avro.io.DatumReader<OrderEnriched>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

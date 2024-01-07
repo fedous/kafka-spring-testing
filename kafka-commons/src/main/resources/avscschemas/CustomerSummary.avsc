@@ -1,0 +1,44 @@
+{
+  "name": "CustomerSummary",
+  "namespace": "org.fedous.generated",
+  "type": "record",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "surname",
+      "type": "string"
+    },
+    {
+      "name": "age",
+      "type": "int"
+    },
+    {
+      "name": "numOrders",
+      "type": "long"
+    },
+    {
+      "name": "productsStatistics",
+      "type": {
+        "name": "ProductStatistics",
+        "type": "record",
+        "fields" : [
+          {
+            "name": "numProducts",
+            "type": "long"
+          },
+          {
+            "name": "avgNumProductsPerOrder",
+            "type": "float"
+          }
+        ]
+      }
+    }
+  ]
+}

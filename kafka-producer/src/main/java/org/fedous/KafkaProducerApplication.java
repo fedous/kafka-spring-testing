@@ -12,11 +12,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 import static java.lang.Thread.sleep;
 
@@ -61,15 +59,14 @@ public class KafkaProducerApplication {
             Random random = new Random();
             while(true) {
                 try {
-                    IntStream intStream = random.ints();
-                    int key = intStream.filter(i -> i >= 0).limit(1).findAny().orElseThrow(); // random value
+                    int key = random.ints(1,1, Integer.MAX_VALUE).findFirst().orElseThrow(); // key value
+                    int orderId = random.ints(1, 1, 11).findFirst().orElseThrow(); // orderId (1 to 10)
+                    int numProducts = random.ints(1, 1, 21).findFirst().orElseThrow(); // num of products (1 to 20)
+                    List<Long> productIds = random.longs(numProducts,0L,100L).distinct().boxed().toList(); // ids of products (0 to 99)
+
                     AvroOrder order = new AvroOrder();
                     order.setOrderId(key);
-                    order.setCustomerId(String.valueOf((key % 10)+1)); // random value from 1 to 10
-                    List<Long> productIds = new ArrayList<>();
-                    productIds.add(System.currentTimeMillis());
-                    productIds.add(7L * key % 10);
-                    productIds.add(9L * key % 100);
+                    order.setCustomerId(String.valueOf(orderId));
                     order.setProductIds(productIds);
 
                     sender.sendAvro(String.valueOf(key), order);

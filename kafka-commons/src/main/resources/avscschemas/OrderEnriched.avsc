@@ -1,5 +1,5 @@
 {
-  "name": "CustomerOrder",
+  "name": "OrderEnriched",
   "namespace": "org.fedous.generated",
   "type": "record",
   "fields": [
